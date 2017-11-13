@@ -1,22 +1,40 @@
 import java.util.*;
 import java.util.stream.*;
 
+/**
+ * Class for pairwise.
+ */
 public class Pairwise {
 
     private ArrayList<ArrayList<Boolean>> options;
     private ArrayList<String> names;
 
+    /**
+     * Constructs the object.
+     *
+     * @param      names  The names
+     */
     public Pairwise(ArrayList<String> names) {
         this.names = names;
         this.options = genBruteforce(this.names.size());
         this.options = minimize(this.options);
     }
 
+    /**
+     * entry point for recursive truthtable generation
+     * 
+     * @param n number of options
+     */
     public ArrayList<ArrayList<Boolean>> genBruteforce(int n) {
         return this.genBruteforce(new ArrayList<Boolean>(), n);
     }
 
-    // bruteforce n items
+    /**
+     * recursive function for truthtable generation
+     * 
+     * @param prog  current generation progress
+     * @param rem   remaining parameters
+     */
     private ArrayList<ArrayList<Boolean>> genBruteforce(ArrayList<Boolean> prog, int rem) {
         if (rem == 0) {
             ArrayList<ArrayList<Boolean>> progList = new ArrayList<ArrayList<Boolean>>();
@@ -37,6 +55,11 @@ public class Pairwise {
         return all;
     }
 
+    /**
+     * minimize a list of options to a n=2 covering array
+     * 
+     * @param options  starting set of options
+     */
     public ArrayList<ArrayList<Boolean>> minimize(ArrayList<ArrayList<Boolean>> options) {
         ArrayList<ArrayList<Boolean>> minimized = new ArrayList<ArrayList<Boolean>>();
         minimized.add(options.get(0));
@@ -72,10 +95,21 @@ public class Pairwise {
         return minimized;
     }
 
+    /**
+     * Pretty print this object's data
+     *
+     * @return     returns the pretty print string
+     */
     public String prettify() {
         return this.prettify(this.names, this.options);
     }
 
+    /**
+     * generic pretty print
+     * 
+     * @param names   headers
+     * @param options values to print
+     */
     public String prettify(ArrayList<String> names, ArrayList<ArrayList<Boolean>> options) {
         int maxLength = 0;
         for (String name : names) {
@@ -107,6 +141,11 @@ public class Pairwise {
         return retStr.toString();
     }
 
+    /**
+     * generate combinatorix pairs or two for n items
+     * 
+     * @param n  number of items for generate pairs for
+     */
     public ArrayList<ArrayList<Integer>> genPairs(int n) {
         int k = 2;
 
@@ -115,12 +154,18 @@ public class Pairwise {
         int[] s = new int[k];                  // here we'll keep indices
 
         // first index sequence: 0, 1, 2, ...
-        for (int i = 0; (s[i] = i) < k - 1; i++);
+        for (int i = 0; i < k - 1; i++) {
+            s[i] = i;
+        }
+
         subsets.add((ArrayList) Arrays.stream(s).boxed().collect(Collectors.toList()));
         while (true) {
             int i;
             // find position of item that can be incremented
-            for (i = k - 1; i >= 0 && s[i] == n - k + i; i--);
+            i = k - 1;
+            while (i >= 0 && s[i] == n - k + i) {
+                i--;
+            }
             if (i < 0) {
                 break;
             }
@@ -134,6 +179,11 @@ public class Pairwise {
         return subsets;
     }
 
+    /**
+     * main function - run the file
+     *
+     * @param      args  The arguments
+     */
     public static void main(String[] args) {
         if (args.length < 2) {
             System.out.println("Please enter at least two parameters!");
