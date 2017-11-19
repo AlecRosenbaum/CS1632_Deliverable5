@@ -23,7 +23,7 @@ public class TestRunner {
 	    // Print out any failures for this class.
       
 	    for (Failure f : r.getFailures()) {
-		System.out.println(f.toString());
+			System.out.println(f.toString());
 	    }
 
 	    // If r is not successful, there was at least one
@@ -33,7 +33,7 @@ public class TestRunner {
 	    // was at least one failure.
 	    
 	    if (!r.wasSuccessful()) {
-		anyFailures = true;
+			anyFailures = true;
 	    }
 	    
 	}

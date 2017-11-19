@@ -146,7 +146,6 @@ public class Pairwise {
             }
             retStr.append("\n");
         }
-
         return retStr.toString();
     }
 
@@ -184,7 +183,6 @@ public class Pairwise {
             }
             subsets.add((ArrayList) Arrays.stream(s).boxed().collect(Collectors.toList()));
         }
-
         return subsets;
     }
 
@@ -196,7 +194,7 @@ public class Pairwise {
     public static void main(String[] args) {
         if (args.length < 2) {
             System.out.println("Please enter at least two parameters!");
-            System.exit(1);
+            return;
         }
         Pairwise asdf = new Pairwise(new ArrayList<String>(Arrays.asList(args)));
         asdf.generateMinimized();
