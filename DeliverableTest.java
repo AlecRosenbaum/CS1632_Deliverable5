@@ -38,42 +38,43 @@ public class DeliverableTest {
         assertEquals("Please enter at least two parameters!\n", systemOutRule.getLog());
     }
     
-    //Test and make sure the main function will return an error if no args are passed in
+    //Test and make sure the main function will return an error if only one arg is passed in
     @Test
     public void testMain_001()throws InterruptedException, ExecutionException {
         _pair.main(new String[] {"Zoom"});
         assertEquals("Please enter at least two parameters!\n", systemOutRule.getLog());
     }   
 
-    //Test and make sure that the main function will catch a file not found exception
+    //Test and make sure that the main function will output the proper text for an input of size 2
     @Test
     public void testMain_002()throws InterruptedException, ExecutionException {
         _pair.main(new String[] {"foo", "bar"});
         assertEquals("foo bar \n0   0   \n1   1   \n1   0   \n0   1   \n\n", systemOutRule.getLog());
     }
 
-    //Test and make sure that the main function will catch a file not found exception
+    //Test and make sure that the main function will output the proper text for an input of size 2 and retain the order of inputs!
     @Test
     public void testMain_003()throws InterruptedException, ExecutionException {
         _pair.main(new String[] {"bar", "foo"});
         assertEquals("bar foo \n0   0   \n1   1   \n1   0   \n0   1   \n\n", systemOutRule.getLog());
     }
 
-    //Test and make sure that the main function will catch a file not found exception
+    //Test and make sure that the main function will output the proper text for an input of size 3
     @Test
     public void testMain_004()throws InterruptedException, ExecutionException {
         _pair.main(new String[] {"wow", "baz", "fun"});
         assertEquals("wow baz fun \n0   0   0   \n1   1   1   \n1   0   0   \n0   1   0   \n0   0   1   \n\n", systemOutRule.getLog());
     }
 
-    //Test and make sure that the main function will catch a file not found exception
+    //Test and make sure that the main function will output the proper text for an input of size 4
     @Test
     public void testMain_005()throws InterruptedException, ExecutionException {
         _pair.main(new String[] {"foo", "baz", "wow", "wacky"});
         assertEquals("foo   baz   wow   wacky \n0     0     0     0     \n1     1     1     1     \n1     0     0     0     \n0     1     0     0     \n0     0     1     0     \n0     0     0     1     \n\n", systemOutRule.getLog());
     }
 
-    //Test and make sure that the main function will catch a file not found exception
+    //Test and make sure that the Gen Pairs method will return the expected 
+    //arraylist<arraylist<Integer>> for an input size of 2
     @Test
     public void testGenPairs_000(){
         ArrayList<ArrayList<Integer>> subsets = new ArrayList<ArrayList<Integer>>();
@@ -89,7 +90,8 @@ public class DeliverableTest {
         assertEquals(subsets, _pair.genPairs(2));
     }
 
-    //Test and make sure that the main function will catch a file not found exception
+    //Test and make sure that the Prettify method will return the expected 
+    //string with a spacing size of 3 for each of the input names
     @Test
     public void testPrettify_000(){
         ArrayList<String> names = new ArrayList<String>();
@@ -110,7 +112,8 @@ public class DeliverableTest {
     }
 
 
-    //Test and make sure that the main function will catch a file not found exception
+    //Test and make sure that the Prettify method will return the expected 
+    //string with a spacing size of 4 for each of the input names
     @Test
     public void testPrettify_001(){
         ArrayList<String> names = new ArrayList<String>();
@@ -130,7 +133,8 @@ public class DeliverableTest {
         assertEquals("zoom fast \n0    0    \n0    1    \n", _pair.prettify(names,options));
     }
 
-    //Test and make sure that the main function will catch a file not found exception
+    //Test and make sure that the Minomoze method will return the expected 
+    //arraylist<arraylist<boolean>> list which is optimal pattern for size 3
     @Test
     public void testMinimize_000(){
 
@@ -187,7 +191,8 @@ public class DeliverableTest {
         assertEquals(results, _pair.minimize(options));
     }
 
-    //Test and make sure that the main function will catch a file not found exception
+    //Test and make sure that the Generate Brute Force method will return the expected 
+    //arraylist<arraylist<boolean>> list which is the base truth table for size 3
     @Test
     public void testGenBruteforce_000(){
 
@@ -237,7 +242,8 @@ public class DeliverableTest {
         assertEquals(options, _pair.genBruteforce(3));
     }
 
-    //Test and make sure that the main function will catch a file not found exception
+    //Test and make sure that the Generate Brute Force method will return the expected 
+    //arraylist<arraylist<boolean>> list which is the base truth table for size 2
     @Test
     public void testGenBruteforce_001(){
 
@@ -264,7 +270,8 @@ public class DeliverableTest {
         assertEquals(options, _pair.genBruteforce(2));
     }
 
-    //Test and make sure that the main function will catch a file not found exception
+    //Test and make sure that the Generate Minimized method will return the expected 
+    //arraylist<arraylist<boolean>> list which is optimized for a input of size 2
     @Test
     public void testGenerateMinimized_000(){
 
@@ -296,7 +303,8 @@ public class DeliverableTest {
         assertEquals(options, thePair.generateMinimized());
     }
 
-    //Test and make sure that the main function will catch a file not found exception
+    //Test and make sure that the Generate Minimized method will return the expected 
+    //arraylist<arraylist<boolean>> list which is optimized for a input of size 3
     @Test
     public void testGenerateMinimized_001(){
 
