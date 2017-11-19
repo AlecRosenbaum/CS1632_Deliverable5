@@ -15,15 +15,24 @@ public class Pairwise {
      * @param      names  The names
      */
     public Pairwise(ArrayList<String> names) {
-        this.names = names;
+        this.names = names; 
+    }
+
+    /**
+     * generate and minimuze pairwise testing based on this object's stored names
+     * 
+     * @return     The minimized options
+     */
+    public ArrayList<ArrayList<Boolean>> generateMinimized() {
         this.options = genBruteforce(this.names.size());
         this.options = minimize(this.options);
+        return this.options;
     }
 
     /**
      * entry point for recursive truthtable generation
-     * 
-     * @param n number of options
+     *
+     * @param      n     number of options
      */
     public ArrayList<ArrayList<Boolean>> genBruteforce(int n) {
         return this.genBruteforce(new ArrayList<Boolean>(), n);
@@ -31,9 +40,9 @@ public class Pairwise {
 
     /**
      * recursive function for truthtable generation
-     * 
-     * @param prog  current generation progress
-     * @param rem   remaining parameters
+     *
+     * @param      prog  current generation progress
+     * @param      rem   remaining parameters
      */
     private ArrayList<ArrayList<Boolean>> genBruteforce(ArrayList<Boolean> prog, int rem) {
         if (rem == 0) {
@@ -57,8 +66,8 @@ public class Pairwise {
 
     /**
      * minimize a list of options to a n=2 covering array
-     * 
-     * @param options  starting set of options
+     *
+     * @param      options  starting set of options
      */
     public ArrayList<ArrayList<Boolean>> minimize(ArrayList<ArrayList<Boolean>> options) {
         ArrayList<ArrayList<Boolean>> minimized = new ArrayList<ArrayList<Boolean>>();
@@ -106,9 +115,9 @@ public class Pairwise {
 
     /**
      * generic pretty print
-     * 
-     * @param names   headers
-     * @param options values to print
+     *
+     * @param      names    headers
+     * @param      options  values to print
      */
     public String prettify(ArrayList<String> names, ArrayList<ArrayList<Boolean>> options) {
         int maxLength = 0;
@@ -143,8 +152,8 @@ public class Pairwise {
 
     /**
      * generate combinatorix pairs or two for n items
-     * 
-     * @param n  number of items for generate pairs for
+     *
+     * @param      n     number of items for generate pairs for
      */
     public ArrayList<ArrayList<Integer>> genPairs(int n) {
         int k = 2;
@@ -190,6 +199,7 @@ public class Pairwise {
             System.exit(1);
         }
         Pairwise asdf = new Pairwise(new ArrayList<String>(Arrays.asList(args)));
+        asdf.generateMinimized();
         System.out.println(asdf.prettify());
     }
 }
